@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/laragon/www/**)",
+      "Bash(php artisan config:clear)",
+      "Bash(php artisan cache:clear)",
+      "Bash(php -r \"var_dump\\(file_exists\\(''c:/laragon/www/MCIMS2_[BACKUP3] better than before/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php''\\)\\);\")",
+      "Bash(php artisan key:generate --show)"
+    ]
+  }
+}
