@@ -69,7 +69,10 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($barangays as $barangay) {
-            Barangay::create($barangay);
+            Barangay::firstOrCreate(
+                ['name' => $barangay['name']],
+                $barangay
+            );
         }
 
         // Create categories with weights
@@ -85,28 +88,35 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($categories as $category) {
-            Category::create($category);
+            Category::firstOrCreate(
+                ['name' => $category['name']],
+                $category
+            );
         }
 
         // Create Municipal Admin
-        User::create([
-            'name' => 'Municipal Admin',
-            'email' => 'admin@mcims.com',
-            'password' => Hash::make('password123'),
-            'role' => 'municipal_admin',
-            'barangay_id' => null,
-            'contact_number' => '09999999999',
-        ]);
+        User::firstOrCreate(
+            ['email' => 'admin@mcims.com'],
+            [
+                'name' => 'Municipal Admin',
+                'password' => Hash::make('password123'),
+                'role' => 'municipal_admin',
+                'barangay_id' => null,
+                'contact_number' => '09999999999',
+            ]
+        );
 
         // Create sample resident
-        User::create([
-            'name' => 'Juan Resident',
-            'email' => 'juan@email.com',
-            'password' => Hash::make('password123'),
-            'role' => 'resident',
-            'barangay_id' => 1,
-            'contact_number' => '09222222222',
-        ]);
+        User::firstOrCreate(
+            ['email' => 'juan@email.com'],
+            [
+                'name' => 'Juan Resident',
+                'password' => Hash::make('password123'),
+                'role' => 'resident',
+                'barangay_id' => 1,
+                'contact_number' => '09222222222',
+            ]
+        );
     }
 }
 
